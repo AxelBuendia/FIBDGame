@@ -1,0 +1,176 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<style type="text/css">
+		@font-face {
+		    font-family: 'Augusta';
+		    src: url('Augusta.ttf') format('truetype');
+		}
+		@font-face {
+		    font-family: 'Deutsch';
+		    src: url('Deutsch.ttf') format('truetype');
+		}
+		@font-face {
+		    font-family: 'PrinceValiant';
+		    src: url('PrinceValiant.ttf') format('truetype');
+		}
+		#Help {
+			display: none;
+			position: fixed;
+			right: 5px;
+			top: 5px;
+			z-index: 300;
+			border: 3px;
+			padding: 3px;
+			border-style: dashed;
+			border-color: #555;
+			min-width: 250px;
+			min-height: 120px;
+			background-color: rgba(200, 200, 200, 0.5);
+		}
+		.hidden {
+			display: none;
+		}
+		.loader {
+			position: absolute;
+			top     : 0px;
+			left    : 0px;
+			z-index : 0;
+			visibility: hidden;
+		}
+		.bullet{
+			display: inline-block;
+			vertical-align: middle;
+		}
+		footer {
+		  position: fixed;
+		  bottom  : 0px;
+		  left    : 0px;
+		}
+	</style>
+	<script type="text/javascript">
+
+		function setCookie(cname, cvalue, exdays) {
+		  var d = new Date();
+		  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+		  var expires = "expires="+ d.toUTCString();
+		  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+		}
+
+		function getCookie(name){
+			var cookies = document.cookie;
+			var start = cookies.indexOf(name+"=");
+			while(start > 0 && name[pos-1] != ";"){
+				start = cookies.indexOf(name+"=", start+1);
+			}
+			if(start == -1){ return undefined; }
+			start += name.length + 1;
+			var end = cookies.indexOf(";", start);
+			var value;
+			if(end >= 0)
+				value = cookies.substring(start, end);
+			else
+				value = cookies.substring(start);
+			return value;
+		}
+
+		function loadJSON(url, callback){
+			var xobj = new XMLHttpRequest();
+			xobj.overrideMimeType("application/json");
+			xobj.open('GET', url, true);
+			xobj.onreadystatechange = function () {
+				if (xobj.readyState == 4 && xobj.status == "200") {
+					try{
+						//console.log(xobj);
+						var jsonVal = JSON.parse(xobj.response);
+						callback(jsonVal);
+					}catch(e){
+						console.error('Not a json text ['+jsonVal+']');
+						console.log(e);
+					}
+				}
+			};
+			xobj.send(null);
+		}
+
+		function sendJSON(url, json, callback){
+			var xobj = new XMLHttpRequest();
+			xobj.overrideMimeType("application/json");
+			xobj.open('POST', url);
+			xobj.setRequestHeader("Content-Type", "application/json");
+			xobj.onreadystatechange = function () {
+				if (xobj.readyState == 4 && xobj.status == "200") {
+					try{
+						//console.log(xobj);
+						var jsonVal = JSON.parse(xobj.response);
+						callback(jsonVal);
+					}catch(e){
+						console.error('Not a json text ['+jsonVal+']');
+						console.log(e);
+					}
+				}
+			};
+			xobj.send(JSON.stringify(json));
+		}
+
+		//----- VARIABLES -----
+		var LevelJSON = {"enigma":"test default", "answer":"solutionDefault"};
+		var Level;
+
+		function VerifyAnswer() {
+			var answerElt = document.getElementById('answer');
+			if(answer.value == LevelJSON.answer){
+				alert("Bravo !!! Level "+Level+" terminé !");
+				++Level;
+				alert("Nouveau niveau : "+Level);
+				setCookie("Level", Level, 1);
+				location.reload();
+			}else{
+				alert("Dommage, essayez encore...")
+				answerElt.value = "";
+			}
+		}
+
+		function loadData () {
+			Level = getCookie("Level");
+			if (Level == undefined) Level = 0;
+			//loadJSON("game.php?level="+level, function(jsonVal){
+			//	levelJSON = jsonVal;
+				var enigmaElt = document.getElementById('enigma');
+				enigmaElt.innerHTML = LevelJSON.enigma;
+				var mainElt = document.getElementById('main');
+				mainElt.classList.remove('hidden');
+				var answerElt = document.getElementById('answer');
+				answerElt.value = "";
+			//});
+		}
+
+		window.addEventListener('load', loadData, false);
+
+	</script>
+</head>
+<body>
+	<div class="loader">
+		<div class="hidden">
+			<script type="text/javascript">
+				<!--//--><![CDATA[//><!--
+					function preload(files, list) {
+						for (i = 0; i < files.length; i++) {
+							var img = new Image();
+							img.src = files[i];
+							if(typeof list !== "undefined"){
+								list[i] = img;
+							}
+						}
+					}
+				//--><!]]>
+			</script>
+		</div>
+	</div>
+	<div id='main' class="hidden">
+		<div id='enigma'></div>
+		<input id='answer' placeholder="Tapez votre réponse ici..."></input><button onclick="VerifyAnswer()">ok</button>
+	</div>
+	<div id='Help'>F1 : affiche l'aide<br/>Ctrl + Drag : déplace un POI<br/>Alt + Click : changer la transparance de l'hexagone<br/>Click POI : éditer un POI<br/>DoubleClick : créer un nouveau POI<br/>Drag : tracer une route<br/>Ctrl + s : sauver les données</div>
+</body>
+</html>
