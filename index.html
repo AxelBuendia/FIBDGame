@@ -1,8 +1,13 @@
 <html>
 <head>
+	<title>PNR: Personnage Non Reconnu</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--if we do an icon <link rel="icon" type="image/png" href="http://www.interaction-project.net/PNR/icon.png">
+	<link rel="apple-touch-icon" href="/iphoneICON.png" />-->
 	<style type="text/css">
-		@font-face {
+		/*@font-face {
 		    font-family: 'Augusta';
 		    src: url('Augusta.ttf') format('truetype');
 		}
@@ -13,7 +18,29 @@
 		@font-face {
 		    font-family: 'PrinceValiant';
 		    src: url('PrinceValiant.ttf') format('truetype');
+		}*/
+
+		#main-container{
+			max-width: 500px;
+  			margin: auto;
+			height:100%;
+			border:1px dotted black;
+			text-align: center;
 		}
+
+		#game-title{
+			font-size:16px;
+			font-weight: bold;
+		}
+
+		#PNR-box{
+
+		}
+
+		#enigma-title{
+
+		}
+
 		#Help {
 			display: none;
 			position: fixed;
@@ -119,7 +146,7 @@
 
 		function VerifyAnswer() {
 			var answerElt = document.getElementById('answer');
-			if(answer.value == LevelJSON.answer){
+			if(answer.value.toLowerCase() == LevelJSON.answer.toLowerCase() ){
 				alert("Bravo !!! Level "+Level+" terminé !");
 				++Level;
 				alert("Nouveau niveau : "+Level);
@@ -134,8 +161,8 @@
 		function loadData () {
 			Level = getCookie("Level");
 			if (Level == undefined) Level = 0;
-			//loadJSON("game.php?level="+level, function(jsonVal){
-			//	levelJSON = jsonVal;
+			//loadJSON("/PNR/game.php?level="+Level, function(jsonVal){
+				//levelJSON = jsonVal;
 				var enigmaElt = document.getElementById('enigma');
 				enigmaElt.innerHTML = LevelJSON.enigma;
 				var mainElt = document.getElementById('main');
@@ -167,9 +194,14 @@
 			</script>
 		</div>
 	</div>
-	<div id='main' class="hidden">
-		<div id='enigma'></div>
-		<input id='answer' placeholder="Tapez votre réponse ici..."></input><button onclick="VerifyAnswer()">ok</button>
+	<div id="main-container">
+		<div id="game-title">PNR: Personnage Non Reconnu</div>
+		<div id='main' class="hidden">
+			<img src="img/PNJMain.jpg"/>
+			<br/><br/>
+			<div id='enigma'></div>
+			<input id='answer' placeholder="Tapez votre réponse ici..."></input><button onclick="VerifyAnswer()">ok</button>
+		</div>
 	</div>
 	<div id='Help'>F1 : affiche l'aide<br/>Ctrl + Drag : déplace un POI<br/>Alt + Click : changer la transparance de l'hexagone<br/>Click POI : éditer un POI<br/>DoubleClick : créer un nouveau POI<br/>Drag : tracer une route<br/>Ctrl + s : sauver les données</div>
 </body>
