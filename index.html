@@ -41,6 +41,32 @@
 
 		}
 
+		.buttonClass{
+			background-size: 42px;
+			width:42px;
+			height:42px;
+		}
+
+		.answerBadgeContainer{
+			margin:auto;
+			width:150px;
+			height:26px;
+			padding:3px;
+			border:1px solid black;
+		}
+
+		.answerBadge{
+			width:21px;
+			height:21px;
+		}
+
+		#badge_answer, #reset_badges {
+			font-size:14px;
+			background-color: #CCCCCC;
+  			border: none;
+  			border-radius: 8px;
+		}
+
 		#Help {
 			display: none;
 			position: fixed;
@@ -140,13 +166,44 @@
 			xobj.send(JSON.stringify(json));
 		}
 
+		function AddBadge(el){
+			el.classList.add('hidden');
+
+			var bAnswer = document.getElementById("badge_answer") ;
+			/*if(bAnswer.value != ""){
+				bAnswer.value = bAnswer.value + "," ;
+			}*/
+			bAnswer.value = bAnswer.value+el.value ;
+			var imgB = "<img src='img/badge"+el.value+".png' class='answerBadge'/>" ;
+			//document.getElementById("badgeVisibleAnswer").innerHTML += "Badge "+el.value ;
+
+			document.getElementById("badgeVisibleAnswer").innerHTML += imgB ;
+		}
+
+		function ResetBadges(){
+			for(i=1;i<=6;i++){
+				document.getElementById('b'+i).classList.remove('hidden');
+			}
+			document.getElementById("badgeVisibleAnswer").innerHTML = "" ;
+
+			var answerElt = document.getElementById('badge_answer');
+			answerElt.value = "";
+		}
+
 		//----- VARIABLES -----
-		var LevelJSON = {"enigma":"test default", "answer":"solutionDefault"};
+		//var LevelJSON = {"enigma":"test default", "answer":"solutionDefault", "type":"affiche_enigme"};
+		var LevelJSON = {"enigma":"test default", "answer":"345621", "type":"badge_enigme"};
 		var Level;
 
-		function VerifyAnswer() {
-			var answerElt = document.getElementById('answer');
-			if(answer.value.toLowerCase() == LevelJSON.answer.toLowerCase() ){
+		function VerifyAnswer(el) {
+			var answerElt
+			if(el == null){
+				answerElt = document.getElementById('answer');
+			}else{
+				answerElt = el ;
+			}
+
+			if(answerElt.value.toLowerCase() == LevelJSON.answer.toLowerCase() ){
 				alert("Bravo !!! Level "+Level+" terminé !");
 				++Level;
 				alert("Nouveau niveau : "+Level);
@@ -155,6 +212,9 @@
 			}else{
 				alert("Dommage, essayez encore...")
 				answerElt.value = "";
+				if(LevelJSON.type == "badge_enigme"){
+					ResetBadges() ;
+				}
 			}
 		}
 
@@ -163,12 +223,74 @@
 			if (Level == undefined) Level = 0;
 			//loadJSON("/PNR/game.php?level="+Level, function(jsonVal){
 				//levelJSON = jsonVal;
-				var enigmaElt = document.getElementById('enigma');
-				enigmaElt.innerHTML = LevelJSON.enigma;
-				var mainElt = document.getElementById('main');
-				mainElt.classList.remove('hidden');
-				var answerElt = document.getElementById('answer');
-				answerElt.value = "";
+				
+				var type = LevelJSON.type;
+
+				switch(type){
+
+					case "start":
+
+					var mainSElt = document.getElementById('mainStart');
+					mainSElt.classList.remove('hidden');
+
+					var enigmaElt = document.getElementById('startMessage');
+					enigmaElt.innerHTML = LevelJSON.enigma;
+					
+					var mainElt = document.getElementById('main');
+					mainElt.classList.add('hidden');
+
+					var main2Elt = document.getElementById('main2');
+					main2Elt.classList.add('hidden');
+
+					break;
+
+					case "affiche_enigme":
+
+					var enigmaElt = document.getElementById('enigma');
+					enigmaElt.innerHTML = LevelJSON.enigma;
+
+					var mainOElt = document.getElementById('main2');
+					mainOElt.classList.add('hidden');
+
+					var mainElt = document.getElementById('main');
+					mainElt.classList.remove('hidden');
+
+					var answerElt = document.getElementById('answer');
+					answerElt.value = "";
+					break;
+
+					case "badge_enigme":
+
+					var enigmaElt = document.getElementById('badge_enigma');
+					enigmaElt.innerHTML = LevelJSON.enigma;
+
+					var mainOElt = document.getElementById('main');
+					mainOElt.classList.add('hidden');
+
+					var mainElt = document.getElementById('main2');
+					mainElt.classList.remove('hidden');
+
+					var answerElt = document.getElementById('badge_answer');
+					answerElt.value = "";
+
+					break;
+
+					case "win":
+
+					var enigmaElt = document.getElementById('win_message');
+					enigmaElt.innerHTML = LevelJSON.enigma;
+
+					var mainElt = document.getElementById('main');
+					mainElt.classList.add('hidden');
+
+					var main2Elt = document.getElementById('main2');
+					main2Elt.classList.add('hidden');
+
+					var mainWElt = document.getElementById('mainW');
+					mainWElt.classList.remove('hidden');
+
+					break;
+				}
 			//});
 		}
 
@@ -196,11 +318,44 @@
 	</div>
 	<div id="main-container">
 		<div id="game-title">PNR: Personnage Non Reconnu</div>
+		<div id='mainStart' class="hidden">
+			<img src="img/PNJMain.jpg"/>
+			<br/><br/>
+			<div id='startMessage'></div>
+			<button value="solutionDefault" onclick="VerifyAnswer(this)">ok</button>
+		</div>
+
 		<div id='main' class="hidden">
 			<img src="img/PNJMain.jpg"/>
 			<br/><br/>
 			<div id='enigma'></div>
 			<input id='answer' placeholder="Tapez votre réponse ici..."></input><button onclick="VerifyAnswer()">ok</button>
+		</div>
+
+		<div id='main2' class="hidden">
+			<img src="img/PNJMain.jpg"/>
+			<br/><br/>
+			<div id="badge_enigma"></div>
+			<br/>
+			<div style="height:42px">
+			<button id="b1" value="1" class="buttonClass" style="background-image:url('img/badge1.png')" onclick="AddBadge(this)"></button>
+			<button id="b2" class="buttonClass" style="background-image:url('img/badge2.png')" value="2" onclick="AddBadge(this)"></button>
+			<button id="b3" class="buttonClass" style="background-image:url('img/badge3.png')" value="3" onclick="AddBadge(this)"></button>
+			<button id="b4" class="buttonClass" style="background-image:url('img/badge4.png')" value="4" onclick="AddBadge(this)"></button>
+			<button id="b5" class="buttonClass" style="background-image:url('img/badge5.png')" value="5" onclick="AddBadge(this)"></button>
+			<button id="b6" class="buttonClass" style="background-image:url('img/badge6.png')" value="6" onclick="AddBadge(this)"></button>
+			</div>
+			<br/>
+			<div id="badgeVisibleAnswer" class="answerBadgeContainer"></div>
+			<br/>
+			<button id="badge_answer" value="" onclick="VerifyAnswer(this)">OK</button>
+			<br/><br/><button id="reset_badges" value="" onclick="ResetBadges()">RESET</button>
+		</div>
+
+		<div id='mainW' class="hidden">
+			<img src="img/PNJMain.jpg"/>
+			<br/><br/>
+			<div id="win_message"></div>
 		</div>
 	</div>
 	<div id='Help'>F1 : affiche l'aide<br/>Ctrl + Drag : déplace un POI<br/>Alt + Click : changer la transparance de l'hexagone<br/>Click POI : éditer un POI<br/>DoubleClick : créer un nouveau POI<br/>Drag : tracer une route<br/>Ctrl + s : sauver les données</div>
