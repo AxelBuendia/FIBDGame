@@ -58,13 +58,13 @@
 		}
 
 		.buttonClass{
-			background-size: 42px;
-			width:42px;
-			height:42px;
+			background-size: 40px;
+			width:40px;
+			height:40px;
 		}
 
 		.answerBadgeContainer{
-			margin:auto;
+			display: inline-block;
 			width:150px;
 			height:26px;
 			padding:3px;
@@ -76,16 +76,17 @@
 			height:21px;
 		}
 
-		#badge_answer, #reset_badges, #affiche_answer {
+		#badge_answer, #reset_badges, #affiche_answer, #no_answer {
 			font-size:14px;
 			background-color: #74a3ed;
   			border: none;
   			border-radius: 8px;
 		}
 
-		#mainStart img, #main img, #main2 img, #mainW img{
-			width:100%;
+		.illustration{
+			/*width:100%;*/
 			max-width:250px;
+			max-height:250px;
 		}
 
 		.message{
@@ -95,9 +96,10 @@
 			border-radius: 8px;
 			background-color: #eeeeee;
 			padding:5px;
+			font-size:14px;
 		}
 
-		#answer{
+		#answer, #no_answer{
 			margin-top:10px;
 		}
 
@@ -162,6 +164,15 @@
 				value = cookies.substring(start);
 			return value;
 		}*/
+
+		function restart(){
+			var r = confirm("Si vous pressez ok. Vos progrès seront effacés et vous recommencerez l'aventure dès le début.");
+			if (r == true) {
+				setCookie("LevelPNR", 0, 0);
+				location.reload();
+			}
+		}
+
 		function setCookie(cname, cvalue, exdays){
 			localStorage[cname] = cvalue ;
 		}
@@ -288,6 +299,9 @@
 					var main2Elt = document.getElementById('main2');
 					main2Elt.classList.add('hidden');
 
+					var theillu = document.getElementById('mainStartimg');
+					theillu.src = "img/"+LevelJSON.img ;
+
 					break;
 
 					case "affiche_enigme":
@@ -303,6 +317,10 @@
 
 					var answerElt = document.getElementById('answer');
 					answerElt.value = "";
+
+					var theillu = document.getElementById('mainimg');
+					theillu.src = "img/"+LevelJSON.img ;
+
 					break;
 
 					case "badge_enigme":
@@ -319,6 +337,9 @@
 					var answerElt = document.getElementById('badge_answer');
 					answerElt.value = "";
 
+					var theillu = document.getElementById('main2img');
+					theillu.src = "img/"+LevelJSON.img ;
+
 					break;
 
 					case "win":
@@ -334,6 +355,9 @@
 
 					var mainWElt = document.getElementById('mainW');
 					mainWElt.classList.remove('hidden');
+
+					var theillu = document.getElementById('mainWimg');
+					theillu.src = "img/"+LevelJSON.img ;
 
 					break;
 				}
@@ -365,21 +389,21 @@
 	<div id="main-container">
 		<div id="game-title">PNR: Personnage Non Reconnu</div>
 		<div id='mainStart' class="hidden">
-			<img src="img/test1.png"/>
+			<img id="mainStartimg" src="img/test1.png" class="illustration"/>
 			<br/><br/>
 			<div id='startMessage' class="message"></div>
-			<button value="solutionDefault" onclick="VerifyAnswer(this)">ok</button>
+			<button id="no_answer" value="solutionDefault" onclick="VerifyAnswer(this)">OK</button>
 		</div>
 
 		<div id='main' class="hidden">
-			<img src="img/test1.png"/>
+			<img id="mainimg" src="img/test1.png" class="illustration"/>
 			<br/><br/>
 			<div id='enigma' class="message"></div>
-			<input id='answer' placeholder="Tapez votre réponse ici..."></input><button id="affiche_answer" onclick="VerifyAnswer()">ok</button>
+			<input id='answer' placeholder="Tapez votre réponse ici..."></input><button id="affiche_answer" onclick="VerifyAnswer()">OK</button>
 		</div>
 
 		<div id='main2' class="hidden">
-			<img src="img/test1.png"/>
+			<img id="main2img" src="img/test1.png" class="illustration"/>
 			<br/><br/>
 			<div id="badge_enigma" class="message"></div>
 			<br/>
@@ -393,18 +417,15 @@
 			</div>
 			<br/>
 			<div id="badgeVisibleAnswer" class="answerBadgeContainer"></div>
-			<br/>
-			<button id="badge_answer" value="" onclick="VerifyAnswer(this)">OK</button>
-			<br/><br/><button id="reset_badges" value="" onclick="ResetBadges()">RESET</button>
+			<button id="badge_answer" value="" onclick="VerifyAnswer(this)">OK</button>&nbsp;&nbsp;<button id="reset_badges" value="" onclick="ResetBadges()">RESET</button>
 		</div>
 
 		<div id='mainW' class="hidden">
-			<img src="img/test1.png"/>
+			<img id="mainWimg" src="img/test1.png" class="illustration"/>
 			<br/><br/>
 			<div id="win_message" class="message"></div>
 		</div>
-		<div id="footer">Aide - Crédits - Recommencer une partie</div>
-	</div>
+		<div id="footer">Aide - Crédits - <button id="restartit" value="" onclick="restart()">Recommencez l'aventure au début</button>
 	<!--<div id='Help'>F1 : affiche l'aide<br/>Ctrl + Drag : déplace un POI<br/>Alt + Click : changer la transparance de l'hexagone<br/>Click POI : éditer un POI<br/>DoubleClick : créer un nouveau POI<br/>Drag : tracer une route<br/>Ctrl + s : sauver les données</div>-->
 </body>
 </html>
