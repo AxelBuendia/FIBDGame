@@ -49,12 +49,14 @@
   			text-align: center;
 		}
 
-		#PNR-box{
-
-		}
-
-		#enigma-title{
-
+		.footer-button{
+			color:#fff;
+			background-color: #000000;
+  			border: none;
+  			border-radius: 8px;
+  			margin-right:3px;
+  			margin-left:3px;
+  			margin-top:2px;
 		}
 
 		.buttonClass{
@@ -92,9 +94,9 @@
 		.message{
 			margin:auto;
 			width:90%;
-			border:none;
+			border:1px dotted black;
 			border-radius: 8px;
-			background-color: #eeeeee;
+			background-color: #fefefe;
 			padding:5px;
 			font-size:14px;
 		}
@@ -103,19 +105,54 @@
 			margin-top:10px;
 		}
 
-		#Help {
-			display: none;
+		#help, #credits {
 			position: fixed;
-			right: 5px;
-			top: 5px;
+			right: 0px;
+			top: 0px;
 			z-index: 300;
-			border: 3px;
+			/*border: 3px;
 			padding: 3px;
 			border-style: dashed;
+			border-color: #555;*/
+			width:100%;
+			height: 100%;
+			background-color: rgba(200, 200, 200, 0.9);
+		}
+
+		.overlay-content{
+			position:relative;
+			margin:auto;
+			width:100%;
+			height: 100%;
+			max-width: 500px;
+			max-height:750px;
+			border: 3px;
+			border-style: dashed;
 			border-color: #555;
-			min-width: 250px;
-			min-height: 120px;
-			background-color: rgba(200, 200, 200, 0.5);
+		}
+
+		.overlay-title{
+			font-size:20px;
+			font-weight: bold;
+			padding-top:5px;
+			padding-bottom:5px;
+			background-color:#74a3ed;
+			margin-bottom:5px;
+		}
+
+		.overlay-span{
+			padding:5px;
+		}
+
+		.overlay-button{
+			height:20px;
+			width:100%;
+			background-color:#74a3ed;
+			position: absolute;
+			padding-top:3px;
+			padding-bottom:3px;
+  			bottom: 50px;
+  			text-align: center;
 		}
 
 		.hidden {
@@ -242,6 +279,26 @@
 
 			var answerElt = document.getElementById('badge_answer');
 			answerElt.value = "";
+		}
+
+		function openCredits(){
+			var mainElt = document.getElementById('credits');
+			mainElt.classList.remove('hidden');
+		}
+
+		function closeCredits(){
+			var mainOElt = document.getElementById('credits');
+			mainOElt.classList.add('hidden');
+		}
+
+		function openHelp(){
+			var mainElt = document.getElementById('help');
+			mainElt.classList.remove('hidden');
+		}
+
+		function closeHelp(){
+			var mainOElt = document.getElementById('help');
+			mainOElt.classList.add('hidden');
 		}
 
 		//----- VARIABLES -----
@@ -425,7 +482,20 @@
 			<br/><br/>
 			<div id="win_message" class="message"></div>
 		</div>
-		<div id="footer">Aide - Crédits - <button id="restartit" value="" onclick="restart()">Recommencez l'aventure au début</button>
-	<!--<div id='Help'>F1 : affiche l'aide<br/>Ctrl + Drag : déplace un POI<br/>Alt + Click : changer la transparance de l'hexagone<br/>Click POI : éditer un POI<br/>DoubleClick : créer un nouveau POI<br/>Drag : tracer une route<br/>Ctrl + s : sauver les données</div>-->
+		<div id="footer"><button class="footer-button" onclick="openHelp()">Aide</button><button class="footer-button" onclick="openCredits()">Crédits</button><button class="footer-button" onclick="restart()">Recommencez l'aventure</button>
+		<div id="help" class="hidden">
+			<div class="overlay-content">
+				<div class="overlay-title">Aide</div>
+				<span class="overlay-span">Lorem ipsum dolores lalalalala. Lorem ipsum dolores lalalalala. Lorem ipsum dolores lalalalala <br/> Lorem ipsum dolores lalalalala</span>
+				<div class="overlay-button"><button onclick="closeHelp()">Fermer l'aide</button></div>
+			</div>
+		</div>
+		<div id="credits" class="hidden">
+			<div class="overlay-content">
+				<div class="overlay-title">Crédits</div>
+				<span class="overlay-span">Lorem ipsum dolores lalalalala <br/> Lorem ipsum dolores lalalalala Lorem ipsum dolores lalalalala <br/> Lorem ipsum dolores lalalalala</span>
+				<div class="overlay-button"><button onclick="closeCredits()">Fermer les crédits</button></div>
+			</div>
+		</div>
 </body>
 </html>
