@@ -11,6 +11,8 @@
 	$dlevel[$l]['img'] = "PersoPerdu.png" ;
 	$dlevel[$l]['cue'] = "" ;
 	$dlevel[$l]['label'] = "" ;
+	$dlevel[$l]['bgi'] = "" ;
+	$dlevel[$l]['bgc'] = "#333333" ;
 	$l++ ;
 
 	$dlevel[$l]['enigma'] = "Troubadour: Je comprends pas, le portail ne me reconnaît pas et le clavier est bloqué ! J’étais en permission au festival de la BD et maintenant je ne peux plus rentrer !" ;
@@ -19,6 +21,8 @@
 	$dlevel[$l]['img'] = "PersoNonReconnuPortail.png" ;
 	$dlevel[$l]['cue'] = "" ;
 	$dlevel[$l]['label'] = "" ;
+	$dlevel[$l]['bgi'] = "" ;
+	$dlevel[$l]['bgc'] = "#000000" ;
 	$l++ ;
 
 /*=====FIN INTRO ============== */
@@ -192,7 +196,7 @@
 /*=====FIN TAE.EXE ============== */
 
 /*=====DEBUT AURORE ============== */
-	$dlevel[$l]['enigma'] = "Troubadour : Le symbole suivant, c’est celui des graphistes... Il faut prendre le train et suivre les rails du rêve et attend le train ! L’affiche est au 1er, vers l’amphi." ;
+	$dlevel[$l]['enigma'] = "Troubadour : Le symbole suivant, c’est celui des graphistes... Il faut prendre le train et suivre les rails du rêve et attendre le train ! L’affiche est au 1er, vers l’amphi." ;
 	$dlevel[$l]['type'] = "affiche_enigme" ;
 	$dlevel[$l]['answer'] = "aurore" ;
 	$dlevel[$l]['img'] = "PersoReflechi.png" ;
@@ -614,7 +618,7 @@
 
 	$dlevel[$l]['enigma'] = "Troubadour : L'ordre c'est prog - son - graphisme - ergo - gd - gestion de projet. Mais quel symbole est quoi ? Y'a un pense-tête affiché au secrétariat." ;
 	$dlevel[$l]['type'] = "badge_enigme" ;
-	$dlevel[$l]['answer'] = "562413" ;
+	$dlevel[$l]['answer'] = "progsongraphergogdcdp" ;
 	$dlevel[$l]['img'] = "PersoPerdu.png" ;
 	$dlevel[$l]['cue'] = "Le temps presse ! Cours au secrétariat !" ;
 	$dlevel[$l]['label'] = "" ;
@@ -633,8 +637,8 @@
 	$l++ ;
 
 	$dlevel[$l]['enigma'] = "Troubadour : Je crois que c’est le moment des adieux ! Je me sens déjà nostalgique de nos aventures ! À plus dans mon jeu !" ;
-	$dlevel[$l]['type'] = "start" ;
-	$dlevel[$l]['answer'] = "win" ;
+	$dlevel[$l]['type'] = "win" ;
+	$dlevel[$l]['answer'] = "none" ;
 	$dlevel[$l]['img'] = "PersoReconnuPortail.png" ;
 	$dlevel[$l]['cue'] = "Merci d'avoir joué." ;
 	$dlevel[$l]['label'] = "" ;
@@ -659,8 +663,15 @@
 	$dlevel[$l]['cue'] = "" ;
 	$l++ ;
 */
-
-	echo "{\"enigma\":\"".$dlevel[$Level]['enigma']."\", \"label\":\"".$dlevel[$Level]['label']."\", \"answer\":\"".$dlevel[$Level]['answer']."\", \"cue\":\"".$dlevel[$Level]['cue']."\", \"img\":\"".$dlevel[$Level]['img']."\", \"type\":\"".$dlevel[$Level]['type']."\"}" ;
+	/*
+	if(!isset($dlevel[$Level]['bgi'])){
+		$dlevel[$Level]['bgi'] = "" ;
+	}
+	if(!isset($dlevel[$Level]['bgc'])){
+		$dlevel[$Level]['bgc'] = "" ;
+	}
+*/
+	echo "{\"enigma\":\"".$dlevel[$Level]['enigma']."\", \"label\":\"".$dlevel[$Level]['label']."\", \"answer\":\"".$dlevel[$Level]['answer']."\", \"cue\":\"".$dlevel[$Level]['cue']."\", \"img\":\"".$dlevel[$Level]['img']."\", \"bgi\":\"".$dlevel[$Level]['bgi']."\", \"bgc\":\"".$dlevel[$Level]['bgc']."\", \"type\":\"".$dlevel[$Level]['type']."\"}" ;
 	
 	/*
 	switch ($Level){

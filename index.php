@@ -30,23 +30,31 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 			max-height:750px;
   			margin: auto;
 			height:100%;
-			border:1px solid #74a3ed;
+			border:1px solid #81d99c;
 			text-align: center;
 			position:relative;
+
+			
+			/*background: url(img/PersoAspirateur.png);*/
+			background-position: center;
+			background-color:#ffffff;
+			background-repeat: no-repeat;
+			background-size: contain;
 		}
 
 		#game-title{
+			color:#ffffff;
 			font-size:20px;
 			font-weight: bold;
 			padding-top:5px;
 			padding-bottom:5px;
-			background-color:#74a3ed;
+			background-color:#81d99c;
 		}
 
 		#footer{
 			height:20px;
 			width:100%;
-			background-color:#74a3ed;
+			background-color:#81d99c;
 			position: absolute;
 			padding-top:3px;
 			padding-bottom:3px;
@@ -75,7 +83,7 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 			width:150px;
 			height:26px;
 			padding:3px;
-			border:1px solid black;
+			border:1px solid #81d99c;
 		}
 
 		.answerBadge{
@@ -85,7 +93,7 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 
 		#badge_answer, #reset_badges, #affiche_answer, #no_answer {
 			font-size:14px;
-			background-color: #74a3ed;
+			background-color: #81d99c;
   			border: none;
   			border-radius: 8px;
 		}
@@ -109,6 +117,7 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 		#answer, #no_answer{
 			margin-top:10px;
 			width:200px;
+			border:1px solid #81d99c;
 		}
 
 		#help, #credits {
@@ -122,7 +131,7 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 			border-color: #555;*/
 			width:100%;
 			height: 100%;
-			background-color: rgba(200, 200, 200, 0.9);
+			background-color: rgba(129, 217, 156, 1);
 		}
 
 		.overlay-content{
@@ -134,7 +143,9 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 			max-height:750px;
 			border: 3px;
 			border-style: dashed;
-			border-color: #555;
+			border-color: #81d99c;
+			box-sizing: border-box;
+			padding:5px;
 		}
 
 		.overlay-title{
@@ -142,7 +153,7 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 			font-weight: bold;
 			padding-top:5px;
 			padding-bottom:5px;
-			background-color:#74a3ed;
+			background-color:#81d99c;
 			margin-bottom:5px;
 		}
 
@@ -150,10 +161,15 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 			padding:5px;
 		}
 
+		.link_credit{
+			color:#fff;
+			text-decoration: underline;
+		}
+
 		.overlay-button{
 			height:20px;
 			width:100%;
-			background-color:#74a3ed;
+			background-color:#81d99c;
 			position: absolute;
 			padding-top:3px;
 			padding-bottom:3px;
@@ -161,9 +177,16 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
   			text-align: center;
 		}
 
+		.overlay-button>button{
+			background-color:#fff;
+			border: none;
+  			border-radius: 8px;
+		}
+
 		.hidden {
 			display: none;
 		}
+
 		.loader {
 			position: absolute;
 			top     : 0px;
@@ -171,6 +194,7 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 			z-index : 0;
 			visibility: hidden;
 		}
+
 		.bullet{
 			display: inline-block;
 			vertical-align: middle;
@@ -190,12 +214,10 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 		  color: grey;
 		  text-align:center;
 		}
-		/*footer {
-		  position: fixed;
-		  bottom  : 0px;
-		  left    : 0px;
-		}*/
+
 	</style>
+	<script src="http://www.interaction-project.net/reptools/tinystatosaurus/tinystatosaurus_config_PNR.js"></script>	
+	<script src="http://www.interaction-project.net/reptools/tinystatosaurus/tinystatosaurus.js"></script>
 	<script type="text/javascript">
 
 		/*
@@ -227,6 +249,7 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 			var r = confirm("Si vous pressez ok. Vos progrès seront effacés et vous recommencerez l'aventure dès le début.");
 			if (r == true) {
 				setCookie("LevelPNR", 0, 0);
+				TinyStato.logThis(100, "restart_game", "", Level) ;
 				location.reload();
 			}
 		}
@@ -286,7 +309,7 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 				bAnswer.value = bAnswer.value + "," ;
 			}*/
 			bAnswer.value = bAnswer.value+el.value ;
-			var imgB = "<img src='img/badge"+el.value+".png' class='answerBadge'/>" ;
+			var imgB = "<img src='img/badge_"+el.value+".png' class='answerBadge'/>" ;
 			//document.getElementById("badgeVisibleAnswer").innerHTML += "Badge "+el.value ;
 
 			document.getElementById("badgeVisibleAnswer").innerHTML += imgB ;
@@ -300,26 +323,31 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 
 			var answerElt = document.getElementById('badge_answer');
 			answerElt.value = "";
+			TinyStato.logThis(13, "reset_badge", "", Level) ;
 		}
 
 		function openCredits(){
 			var mainElt = document.getElementById('credits');
 			mainElt.classList.remove('hidden');
+			TinyStato.logThis(101, "credit", "open", Level) ;
 		}
 
 		function closeCredits(){
 			var mainOElt = document.getElementById('credits');
 			mainOElt.classList.add('hidden');
+			TinyStato.logThis(102, "credit", "close", Level) ;
 		}
 
 		function openHelp(){
 			var mainElt = document.getElementById('help');
 			mainElt.classList.remove('hidden');
+			TinyStato.logThis(103, "help", "open", Level) ;
 		}
 
 		function closeHelp(){
 			var mainOElt = document.getElementById('help');
 			mainOElt.classList.add('hidden');
+			TinyStato.logThis(104, "help", "close", Level) ;
 		}
 
 		//----- VARIABLES -----
@@ -345,8 +373,11 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 				|| answerCleared.toLowerCase() == solutionCleared.toLowerCase()){
 				Level++;
 				setCookie("LevelPNR", Level, 1);
+				TinyStato.logThis(10, "good_answer", (Level-1), answerElt.value.toLowerCase()) ;
 				location.reload();
 			}else{
+				TinyStato.logThis(11, "wrong_answer", Level, answerElt.value.toLowerCase()) ;
+
 				var cue = LevelJSON.cue ;
 				if(typeof cue === 'undefined' || cue == ""){
 					cue = "Dommage, essayez encore !" ;
@@ -364,10 +395,26 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 			Level = getCookie("LevelPNR");
 			if (Level == undefined) Level = 0;
 
+			TinyStato.logThis(5, "load_level", Level) ;
+
 			loadJSON("/PNR/game.php?Level="+Level, function(jsonVal){
 				LevelJSON = jsonVal;
 				
+				console.log(LevelJSON) ;
+
 				var type = LevelJSON.type;
+
+				var bg_img = LevelJSON.bgi ;
+				var bg_c = LevelJSON.bgc ;
+
+				var mc = document.getElementById('main-container') ;
+
+				if(bg_img != ""){
+					mc.style.backgroundImage = "url('img/"+bg_img+"')";
+				}
+				if(bg_c != ""){
+					mc.style.backgroundColor = bg_c ;
+				}
 
 				switch(type){
 
@@ -497,12 +544,12 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 			<div id="badge_enigma" class="message"></div>
 			<br/>
 			<div style="height:42px">
-			<button id="b1" value="1" class="buttonClass" style="background-image:url('img/badge1.png')" onclick="AddBadge(this)"></button>
-			<button id="b2" class="buttonClass" style="background-image:url('img/badge2.png')" value="2" onclick="AddBadge(this)"></button>
-			<button id="b3" class="buttonClass" style="background-image:url('img/badge3.png')" value="3" onclick="AddBadge(this)"></button>
-			<button id="b4" class="buttonClass" style="background-image:url('img/badge4.png')" value="4" onclick="AddBadge(this)"></button>
-			<button id="b5" class="buttonClass" style="background-image:url('img/badge5.png')" value="5" onclick="AddBadge(this)"></button>
-			<button id="b6" class="buttonClass" style="background-image:url('img/badge6.png')" value="6" onclick="AddBadge(this)"></button>
+			<button id="b1" value="prog" class="buttonClass" style="background-image:url('img/badge_prog.png')" onclick="AddBadge(this)"></button>
+			<button id="b2" class="buttonClass" style="background-image:url('img/badge_graph.png')" value="graph" onclick="AddBadge(this)"></button>
+			<button id="b3" class="buttonClass" style="background-image:url('img/badge_son.png')" value="son" onclick="AddBadge(this)"></button>
+			<button id="b4" class="buttonClass" style="background-image:url('img/badge_ergo.png')" value="ergo" onclick="AddBadge(this)"></button>
+			<button id="b5" class="buttonClass" style="background-image:url('img/badge_gd.png')" value="gd" onclick="AddBadge(this)"></button>
+			<button id="b6" class="buttonClass" style="background-image:url('img/badge_cdp.png')" value="cdp" onclick="AddBadge(this)"></button>
 			</div>
 			<br/>
 			<div id="badgeVisibleAnswer" class="answerBadgeContainer"></div>
@@ -518,14 +565,23 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 		<div id="help" class="hidden">
 			<div class="overlay-content">
 				<div class="overlay-title">Aide</div>
-				<span class="overlay-span">Lorem ipsum dolores lalalalala. Lorem ipsum dolores lalalalala. Lorem ipsum dolores lalalalala <br/> Lorem ipsum dolores lalalalala</span>
+				<span class="overlay-span">PNR est jouable uniquement le dimanche 2 décembre dans le bâtiment du Nil à l'occasion du FIBD 2020 à Angoulême.<br/>Voici quelques conseils :<br/><br/>- Sachez observer l'intérieur du bâtiment pour trouver les affiches de jeu qui vous donneront les réponses aux nombreuses énigmes.<br/>- Pour répondre, vous n'avez jamais besoin de mettre des majuscules et le jeu précise lorsque vous n'avez pas besoin de mettre de déterminants.<br/>- Les quelques énigmes qui nécessitent des chiffres ne fonctionnent qu'avec les chiffres en toutes lettres.<br/>Les réponses doivent avoir les bons accents.</span>
 				<div class="overlay-button"><button onclick="closeHelp()">Fermer l'aide</button></div>
 			</div>
 		</div>
 		<div id="credits" class="hidden">
 			<div class="overlay-content">
 				<div class="overlay-title">Crédits</div>
-				<span class="overlay-span">Lorem ipsum dolores lalalalala <br/> Lorem ipsum dolores lalalalala Lorem ipsum dolores lalalalala <br/> Lorem ipsum dolores lalalalala</span>
+				<span class="overlay-span">Une réalisation <a class="link_credit" href="http://www.cnam-enjmin.fr/" target="_blank">cnam-enjmin</a> par :<br/><br/>
+					<a class="link_credit" href="http://www.sophiegoudjil.fr/" target="_blank">Sophie Goudjil</a> (Game Writer)<br/>
+					<a class="link_credit" href="http://smader.interaction-project.net/" target="_blank">Stéphanie Mader</a> (Game Designer/Dev)<br/>
+					<a class="link_credit" href="" target="_blank">Perrine Pau</a> (Game Artist).<br/>
+					<a class="link_credit" href="" target="_blank">Inès Helmer</a> (Game Artist)<br/>
+					<a class="link_credit" href="" target="_blank">Catherine Rolland</a> (Conception)<br/>
+					<a class="link_credit" href="" target="_blank">Axel Buendia</a> (Game Developer)<br/>
+					<br/><br/>
+					Ce jeu d’énigmes sur téléphone mobile a été développé pour être jouable le dimanche 2 février dans le bâtiment du Nil à l’occasion du Festival International de la Bande Dessinée 2020 à Angoulême.
+					</span>
 				<div class="overlay-button"><button onclick="closeCredits()">Fermer les crédits</button></div>
 			</div>
 		</div>
