@@ -400,7 +400,7 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 			loadJSON("/PNR/game.php?Level="+Level, function(jsonVal){
 				LevelJSON = jsonVal;
 				
-				console.log(LevelJSON) ;
+				//console.log(LevelJSON) ;
 
 				var type = LevelJSON.type;
 
@@ -525,21 +525,21 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 	<div id="main-container">
 		<div id="game-title">PNR: Personnage Non Reconnu</div>
 		<div id='mainStart' class="hidden">
-			<img id="mainStartimg" src="img/test1.png" class="illustration"/>
+			<img id="mainStartimg" src="" class="illustration"/>
 			<br/><br/>
 			<div id='startMessage' class="message"></div>
 			<button id="no_answer" value="solutionDefault" onclick="VerifyAnswer(this)">OK</button>
 		</div>
 
 		<div id='main' class="hidden">
-			<img id="mainimg" src="img/test1.png" class="illustration"/>
+			<img id="mainimg" src="" class="illustration"/>
 			<br/><br/>
 			<div id='enigma' class="message"></div>
 			<input id='answer' placeholder="Tapez votre réponse ici..."></input><button id="affiche_answer" onclick="VerifyAnswer()">OK</button>
 		</div>
 
 		<div id='main2' class="hidden">
-			<img id="main2img" src="img/test1.png" class="illustration"/>
+			<img id="main2img" src="" class="illustration"/>
 			<br/><br/>
 			<div id="badge_enigma" class="message"></div>
 			<br/>
@@ -557,7 +557,7 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 		</div>
 
 		<div id='mainW' class="hidden">
-			<img id="mainWimg" src="img/test1.png" class="illustration"/>
+			<img id="mainWimg" src="" class="illustration"/>
 			<br/><br/>
 			<div id="win_message" class="message"></div>
 		</div>
