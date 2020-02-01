@@ -111,6 +111,16 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
     		border-radius: 25px;
 		}
 
+		@media only screen and (max-width: 350px) {
+			.illustration{
+			/*width:100%;*/
+			max-width:150px;
+			max-height:150px;
+			background-color: rgb(255,255,255,0.3);
+    		border-radius: 25px;
+		}
+		}
+
 		.message{
 			margin:auto;
 			width:90%;

@@ -27,17 +27,44 @@
 	$dlevel[$l]['bgi'] = $bgiScene ;
 	$l++ ;
 
+	$dlevel[$l]['enigma'] = "Troubadour: Mais que vais-je faire ? J'veux pas être un personnage non reconnu. L'aspirateur de code va me pourchasser pour me supprimer." ;
+	$dlevel[$l]['type'] = "start" ;
+	$dlevel[$l]['answer'] = "solutionDefault" ;
+	$dlevel[$l]['img'] = "PersoPerdu.png" ;
+	$dlevel[$l]['cue'] = "" ;
+	$dlevel[$l]['label'] = "" ;
+	$dlevel[$l]['bgi'] = $bgiScene ;
+	$l++ ;
+
+	$dlevel[$l]['enigma'] = "Troubadour: Et ce portail qui ne me reconnait pas. Ne paniquons pas ! Il faut que j'appelle un pote... " ;
+	$dlevel[$l]['type'] = "start" ;
+	$dlevel[$l]['answer'] = "solutionDefault" ;
+	$dlevel[$l]['img'] = "PersoPerdu.png" ;
+	$dlevel[$l]['cue'] = "" ;
+	$dlevel[$l]['label'] = "" ;
+	$dlevel[$l]['bgi'] = $bgiScene ;
+	$l++ ;
+
+		$dlevel[$l]['enigma'] = "Troubadour: J'ai ce téléphone qui peut appeler dans les jeux. Au lieu d'un numéro, il suffit d'écrire le nom du jeu." ;
+	$dlevel[$l]['type'] = "start" ;
+	$dlevel[$l]['answer'] = "solutionDefault" ;
+	$dlevel[$l]['img'] = "PersoPerdu.png" ;
+	$dlevel[$l]['cue'] = "" ;
+	$dlevel[$l]['label'] = "" ;
+	$dlevel[$l]['bgi'] = $bgiScene ;
+	$l++ ;
+
 /*=====FIN INTRO ============== */
 
 /*=====DEBUT MERCI DE RIEN ============== */
 
 	$bgiScene = "Littleseed_glitched.jpg" ;
 
-	$dlevel[$l]['enigma'] = "Troubadour : Ne paniquons pas ! Il faut que j'appelle mon jeu... Il faut taper le nom du jeu dans mon téléphone… Mais c'est quoi son nom déjà ? Un truc avec Merci... L'affiche est au rez-de-chaussée à côté du secrétariat !" ;
+	$dlevel[$l]['enigma'] = "Troubadour : Ok, mon pote vient du même jeu que moi. Mais c'est quoi le nom de mon jeu déjà ? Un truc avec Merci... L'affiche est au rez-de-chaussée à côté de l'accueil ! Peux-tu aller voir et me rappeler ce nom ?" ;
 	$dlevel[$l]['type'] = "affiche_enigme" ;
 	$dlevel[$l]['answer'] = "merci de rien" ;
 	$dlevel[$l]['img'] = "PersoReflechi.png" ;
-	$dlevel[$l]['cue'] = "Troubadour : Cherche l'affiche dans le bâtiment !" ;
+	$dlevel[$l]['cue'] = "Troubadour : Cherche l'affiche de jeu dans le bâtiment ! L'accueil est au rez-de-chaussée, en face de l'entrée principale." ;
 	$dlevel[$l]['label'] = "Entrez le nom du jeu à appeler" ;
 	$dlevel[$l]['bgi'] = $bgiScene ;
 	$l++ ;
@@ -69,7 +96,7 @@
 	$dlevel[$l]['bgi'] = $bgiScene ;
 	$l++ ;
 
-	$dlevel[$l]['enigma'] = "Le pote : Je ne veux rien savoir ! Le mot de passe ! Combien sommes-nous sur la vitre de la salle E06 ?" ;
+	$dlevel[$l]['enigma'] = "Le pote : Je ne veux rien savoir ! Le mot de passe ! Combien sommes-nous sur la vitre de la salle 0E6 ?" ;
 	$dlevel[$l]['type'] = "affiche_enigme" ;
 	$dlevel[$l]['answer'] = "cinq" ;
 	$dlevel[$l]['img'] = "PersoTel.png" ;
@@ -309,7 +336,7 @@
 /*=====DEBUT ACHROMATIC ============== */
 	$bgiScene = "Achromatic_BG.jpg" ;
 
-	$dlevel[$l]['enigma'] = "Troubadour : C’est l’heure du symbole des sondiers ? Je vois du noir et blanc, je les entends, ça ne doit pas être loin d’ici !" ;
+	$dlevel[$l]['enigma'] = "Troubadour : C’est l’heure du symbole des sound designers ? Je vois du noir et blanc, je les entends, ça ne doit pas être loin d’ici !" ;
 	$dlevel[$l]['type'] = "affiche_enigme" ;
 	$dlevel[$l]['answer'] = "achromatic" ;
 	$dlevel[$l]['img'] = "PersoReflechi.png" ;
@@ -654,7 +681,7 @@
 	$dlevel[$l]['bgi'] = $bgiScene ;
 	$l++ ;
 
-	$dlevel[$l]['enigma'] = "Capitaine : C’est bien une excuse de déserteur ! Si tu veux vraiment revenir alors dis-moi dans quelle port on est ?" ;
+	$dlevel[$l]['enigma'] = "Capitaine : C’est bien une excuse de déserteur ! Si tu veux vraiment revenir alors dis-moi dans quel port on est ?" ;
 	$dlevel[$l]['type'] = "affiche_enigme" ;
 	$dlevel[$l]['answer'] = "angoulême" ;
 	$dlevel[$l]['img'] = "PersoTel.png" ;
@@ -705,11 +732,11 @@
 	$dlevel[$l]['bgi'] = $bgiScene ;
 	$l++ ;
 
-	$dlevel[$l]['enigma'] = "Troubadour : L'ordre c'est prog - son - graphisme - ergo - gd - gestion de projet. Mais quel symbole est quoi ? Y'a un pense-tête affiché au secrétariat." ;
+	$dlevel[$l]['enigma'] = "Troubadour : L'ordre c'est prog - son - graphisme - ergo - gd - gestion de projet. Mais quel symbole est quoi ? Y'a un pense-tête affiché à l'accueil." ;
 	$dlevel[$l]['type'] = "badge_enigme" ;
 	$dlevel[$l]['answer'] = "progsongraphergogdcdp" ;
 	$dlevel[$l]['img'] = "PersoPerdu.png" ;
-	$dlevel[$l]['cue'] = "Le temps presse ! Cours au secrétariat !" ;
+	$dlevel[$l]['cue'] = "Le temps presse ! Cours à l'accueil !" ;
 	$dlevel[$l]['label'] = "" ;
 	$dlevel[$l]['bgi'] = $bgiScene ;
 	$l++ ;
