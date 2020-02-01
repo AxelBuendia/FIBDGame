@@ -592,10 +592,10 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 				<span class="overlay-span">Une réalisation <a class="link_credit" href="http://www.cnam-enjmin.fr/" target="_blank">cnam-enjmin</a> par :<br/><br/>
 					<a class="link_credit" href="http://www.sophiegoudjil.fr/" target="_blank">Sophie Goudjil</a> (Game Writer)<br/>
 					<a class="link_credit" href="http://smader.interaction-project.net/" target="_blank">Stéphanie Mader</a> (Game Designer/Dev)<br/>
-					<a class="link_credit" href="" target="_blank">Perrine Pau</a> (Game Artist).<br/>
-					<a class="link_credit" href="" target="_blank">Inès Helmer</a> (Game Artist)<br/>
-					<a class="link_credit" href="" target="_blank">Catherine Rolland</a> (Conception)<br/>
-					<a class="link_credit" href="" target="_blank">Axel Buendia</a> (Game Developer)<br/>
+					<a class="link_credit" href="https://www.artstation.com/pandamnesik" target="_blank">Perrine Pau</a> (Game Artist).<br/>
+					<a class="link_credit" href="https://www.artstation.com/ineshelmer" target="_blank">Inès Helmer</a> (Game Artist)<br/>
+					<a class="link_credit" href="https://www.linkedin.com/in/catherine-rolland-10747248/" target="_blank">Catherine Rolland</a> (Conception)<br/>
+					Axel Buendia (Game Developer)<br/>
 					<br/><br/>
 					Ce jeu d’énigmes sur téléphone mobile a été développé pour être jouable le dimanche 2 février dans le bâtiment du Nil à l’occasion du Festival International de la Bande Dessinée 2020 à Angoulême.
 					</span>
