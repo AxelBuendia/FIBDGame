@@ -690,7 +690,10 @@
 	$dlevel[$l]['bgi'] = $bgiScene ;
 	$l++ ;
 
-/* DEBUT ENIGME FINAL*/
+/*=====FIN ODD WATERS ============== */
+
+/*=====DEBUT FINAL ============== */
+
 	$bgiScene = "Achromatic_BG_Glitched.jpg" ;
 
 	$dlevel[$l]['enigma'] = "Troubadour : Mais je ne me souviens plus de l’ordre ! Ok, je me concentre... " ;
@@ -710,10 +713,6 @@
 	$dlevel[$l]['label'] = "" ;
 	$dlevel[$l]['bgi'] = $bgiScene ;
 	$l++ ;
-
-/*=====FIN ODD WATERS ============== */
-
-/*=====DEBUT FINAL ============== */
 
 	$dlevel[$l]['enigma'] = "Troubadour : Génial !" ;
 	$dlevel[$l]['type'] = "start" ;

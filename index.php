@@ -237,31 +237,6 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 	<script src="http://www.interaction-project.net/reptools/tinystatosaurus/tinystatosaurus.js"></script>
 	<script type="text/javascript">
 
-		/*
-		function setCookie(cname, cvalue, exdays) {
-		  var d = new Date();
-		  d.setTime(d.getTime() + (exdays*24*60*60*1000));
-		  var expires = "expires="+ d.toUTCString();
-		  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-		}
-
-		function getCookie(name){
-			var cookies = document.cookie;
-			var start = cookies.indexOf(name+"=");
-			while(start > 0 && name[pos-1] != ";"){
-				start = cookies.indexOf(name+"=", start+1);
-			}
-			if(start == -1){ return undefined; }
-			start += name.length + 1;
-			var end = cookies.indexOf(";", start);
-			var value;
-			if(end >= 0)
-				value = cookies.substring(start, end);
-			else
-				value = cookies.substring(start);
-			return value;
-		}*/
-
 		function restart(){
 			var r = confirm("Si vous pressez ok. Vos progrès seront effacés et vous recommencerez l'aventure dès le début.");
 			if (r == true) {
@@ -535,6 +510,8 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 							}
 						}
 					}
+
+					preload(["img/PersoPerdu.png", "img/PersoNonReconnuPortail", "img/PersoReflechi.png", "img/PersoTel.png", "img/PersoHeureux.png", "img/Aspirateur.png", "img/PersoReconnuPortail.png", "img/background/Tae_BG_Glitched.jpg", "img/background/Littleseed_glitched.jpg", "img/background/Achromatic_BG_Glitched.jpg","img/background/Aurore_BG_Glitched.jpg","img/background/Achromatic_BG.jpg", "img/background/Littleseeds_BG.jpg","img/background/Architect_BG_Resize.jpg","img/background/Oddwaters_BG_Glitched.jpg"]);
 				//--><!]]>
 			</script>
 		</div>
