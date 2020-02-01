@@ -71,7 +71,7 @@
 
 	$dlevel[$l]['enigma'] = "Le pote : Je ne veux rien savoir ! Le mot de passe ! Combien sommes-nous sur la vitre de la salle E06 ?" ;
 	$dlevel[$l]['type'] = "affiche_enigme" ;
-	$dlevel[$l]['answer'] = "quatre" ;
+	$dlevel[$l]['answer'] = "cinq" ;
 	$dlevel[$l]['img'] = "PersoTel.png" ;
 	$dlevel[$l]['cue'] = "Le pote : Comptes bien et indiques la solution en toutes lettres" ;
 	$dlevel[$l]['label'] = "Nombre en toutes lettres" ;
@@ -119,7 +119,7 @@
 /*=====DEBUT TAE.EXE ============== */
 	$bgiScene = "Tae_BG_Glitched.jpg" ;
 
-	$dlevel[$l]['enigma'] = "Troubadour : Bon... Alors le premier symbole… c’est la programmation ! C'est dans truc.exe, je crois que c'est écrit sur le côté d'une passerelle du 1er étage !" ;
+	$dlevel[$l]['enigma'] = "Troubadour : Bon... Alors le premier symbole… c’est la programmation ! C'est dans le jeu truc.exe, je crois que c'est écrit sur le côté d'une passerelle du 1er étage !" ;
 	$dlevel[$l]['type'] = "affiche_enigme" ;
 	$dlevel[$l]['answer'] = "tae.exe" ;
 	$dlevel[$l]['img'] = "PersoReflechi.png" ;
@@ -572,7 +572,7 @@
 	$dlevel[$l]['type'] = "affiche_enigme" ;
 	$dlevel[$l]['answer'] = "porte" ;
 	$dlevel[$l]['img'] = "PersoTel.png" ;
-	$dlevel[$l]['cue'] = "Regardez bien l’affiche... et entrez la réponse sans la/le/un/une !" ;
+	$dlevel[$l]['cue'] = "Regardez bien l’affiche, et entrez la réponse sans la/le/un/une !" ;
 	$dlevel[$l]['label'] = "..." ;
 	$dlevel[$l]['bgi'] = $bgiScene ;
 	$l++ ;
