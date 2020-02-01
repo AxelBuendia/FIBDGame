@@ -12,18 +12,18 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 	<!--if we do an icon <link rel="icon" type="image/png" href="http://www.interaction-project.net/PNR/icon.png">
 	<link rel="apple-touch-icon" href="/iphoneICON.png" />-->
 	<style type="text/css">
-		/*@font-face {
-		    font-family: 'Augusta';
-		    src: url('Augusta.ttf') format('truetype');
+		@font-face {
+		    font-family: Roboto;
+		    src: url('img/fonts/Roboto/Roboto-Light.ttf') format('truetype');
 		}
 		@font-face {
-		    font-family: 'Deutsch';
-		    src: url('Deutsch.ttf') format('truetype');
+		    font-family: Odibee;
+		    src: url('img/fonts/Odibee_Sans/OdibeeSans-Regular') format('truetype');
 		}
-		@font-face {
-		    font-family: 'PrinceValiant';
-		    src: url('PrinceValiant.ttf') format('truetype');
-		}*/
+
+		body{
+			font-family: Odibee ;
+		}
 
 		#main-container{
 			max-width: 500px;
@@ -33,18 +33,17 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 			border:1px solid #81d99c;
 			text-align: center;
 			position:relative;
-
 			
 			/*background: url(img/PersoAspirateur.png);*/
 			background-position: center;
 			background-color:#ffffff;
 			background-repeat: no-repeat;
-			background-size: contain;
+			background-size: cover;
 		}
 
 		#game-title{
 			color:#ffffff;
-			font-size:20px;
+			font-size:30px;
 			font-weight: bold;
 			padding-top:5px;
 			padding-bottom:5px;
@@ -68,14 +67,18 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
   			border: none;
   			border-radius: 8px;
   			margin-right:3px;
-  			margin-left:3px;
-  			margin-top:2px;
+  			/*margin-left:3px;
+  			margin-top:2px;*/
+  			font-family: Odibee ;
+  			font-size:18px;
 		}
 
 		.buttonClass{
+			border:1px solid lightgrey;
 			background-size: 40px;
 			width:40px;
 			height:40px;
+			background-color: 000;
 		}
 
 		.answerBadgeContainer{
@@ -89,19 +92,23 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 		.answerBadge{
 			width:21px;
 			height:21px;
+			background-color: 000;
 		}
 
 		#badge_answer, #reset_badges, #affiche_answer, #no_answer {
-			font-size:14px;
+			font-size:18px;
 			background-color: #81d99c;
   			border: none;
   			border-radius: 8px;
+  			font-family: Odibee ;
 		}
 
 		.illustration{
 			/*width:100%;*/
 			max-width:250px;
 			max-height:250px;
+			background-color: rgb(255,255,255,0.3);
+    		border-radius: 25px;
 		}
 
 		.message{
@@ -112,12 +119,18 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 			background-color: #fefefe;
 			padding:5px;
 			font-size:14px;
+			font-family: Roboto ;
 		}
 
 		#answer, #no_answer{
 			margin-top:10px;
 			width:200px;
 			border:1px solid #81d99c;
+		}
+
+		#answer{
+			font-size:14px;
+			font-family: Roboto ;
 		}
 
 		#help, #credits {
@@ -146,15 +159,17 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 			border-color: #81d99c;
 			box-sizing: border-box;
 			padding:5px;
+			font-family: Roboto ;
 		}
 
 		.overlay-title{
-			font-size:20px;
+			font-size:26px;
 			font-weight: bold;
 			padding-top:5px;
 			padding-bottom:5px;
 			background-color:#81d99c;
 			margin-bottom:5px;
+			font-family: Odibee ;
 		}
 
 		.overlay-span{
@@ -177,10 +192,12 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
   			text-align: center;
 		}
 
-		.overlay-button>button{
+		.overlay-button button{
 			background-color:#fff;
 			border: none;
   			border-radius: 8px;
+  			font-family: Odibee ;
+  			font-size:20px;
 		}
 
 		.hidden {
@@ -410,7 +427,7 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 				var mc = document.getElementById('main-container') ;
 
 				if(bg_img != ""){
-					mc.style.backgroundImage = "url('img/"+bg_img+"')";
+					mc.style.backgroundImage = "url('img/background/"+bg_img+"')";
 				}
 				if(bg_c != ""){
 					mc.style.backgroundColor = bg_c ;
