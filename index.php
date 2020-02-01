@@ -114,11 +114,11 @@ if(strpos($_SERVER['HTTP_HOST'], 'www') === FALSE){
 		@media only screen and (max-width: 350px) {
 			.illustration{
 			/*width:100%;*/
-			max-width:150px;
-			max-height:150px;
-			background-color: rgb(255,255,255,0.3);
-    		border-radius: 25px;
-		}
+				max-width:150px;
+				max-height:150px;
+				background-color: rgb(255,255,255,0.3);
+	    		border-radius: 25px;
+			}
 		}
 
 		.message{
